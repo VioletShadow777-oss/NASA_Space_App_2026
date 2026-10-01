@@ -35,6 +35,8 @@ public class HeatingSystem : MonoBehaviour
 
     private float timer;
 
+    [SerializeField] private bool isSystemOn;
+
     private PowerSystem powerSystem;
 
 
@@ -47,7 +49,8 @@ public class HeatingSystem : MonoBehaviour
     private void Start()
     {
         UpdateText();
-        
+        isSystemOn = true;
+
     }
 
 
@@ -66,6 +69,10 @@ public class HeatingSystem : MonoBehaviour
 
     private void ProduceHeat()
     {
+        if (!isSystemOn)
+        {
+            return;
+        }
         // The heating system requires power to operate.
         bool hasPower = powerSystem.ConsumePower(powerCost);
 
@@ -93,6 +100,8 @@ public class HeatingSystem : MonoBehaviour
         );
 
         UpdateText();
+
+        Debug.Log("Heat");
     }
 
 
@@ -105,5 +114,17 @@ public class HeatingSystem : MonoBehaviour
     public int GetCurrentTemperature()
     {
         return currentTemperature;
+    }
+
+    public void HeatingSystemToggle()
+    {
+        if (isSystemOn == true)
+        {
+            isSystemOn = false;
+        }
+        else
+        {
+            isSystemOn = true;
+        }
     }
 }

@@ -95,7 +95,7 @@ public class HealthSystem : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
 
         UpdateText();
-
+        Debug.Log("Health");
     }
 
     private void UpdateText()
@@ -107,4 +107,6 @@ public class HealthSystem : MonoBehaviour
     {
         return currentHealth;
     }
+
+    
 }
