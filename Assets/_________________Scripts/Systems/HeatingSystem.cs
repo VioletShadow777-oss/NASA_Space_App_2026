@@ -1,0 +1,109 @@
+using TMPro;
+using UnityEngine;
+
+public class HeatingSystem : MonoBehaviour
+{
+    [Header("Temperature")]
+    [Tooltip("Current temperature of the Mars base in Fahrenheit.")]
+    [SerializeField] private int currentTemperature = -80;
+
+    [Tooltip("Minimum possible temperature on Mars in Fahrenheit.")]
+    [SerializeField] private int minTemperature = -225;
+
+    [Tooltip("Maximum possible temperature on Mars in Fahrenheit.")]
+    [SerializeField] private int maxTemperature = 80;
+
+    [Tooltip("Text to show the exact temperature.")]
+    [SerializeField] private TextMeshProUGUI temperatureMeterText;
+
+
+    [Header("Heating System")]
+    [Tooltip("Power consumed by the heating system every 5 seconds.")]
+    [SerializeField] private int powerCost = 2;
+
+    [Tooltip("Amount of temperature increased before efficiency is applied.")]
+    [SerializeField] private int heatProduction = 5;
+
+    [Tooltip("Efficiency of the heating system. 1 = 100%.")]
+    [Range(0f, 1f)]
+    [SerializeField] private float efficiency = 0.75f;
+
+
+    [Header("Time")]
+    [Tooltip("How often the heating system updates, in seconds.")]
+    [SerializeField] private float updateInterval = 5f;
+
+    private float timer;
+
+    private PowerSystem powerSystem;
+
+
+    private void Awake()
+    {
+        powerSystem = GetComponent<PowerSystem>();
+
+    }
+
+    private void Start()
+    {
+        UpdateText();
+        
+    }
+
+
+    private void Update()
+    {
+        timer += Time.deltaTime;
+
+        if (timer >= updateInterval)
+        {
+            timer -= updateInterval;
+
+            ProduceHeat();
+        }
+    }
+
+
+    private void ProduceHeat()
+    {
+        // The heating system requires power to operate.
+        bool hasPower = powerSystem.ConsumePower(powerCost);
+
+        if (!hasPower)
+        {
+            // Not enough power.
+            // Heating system cannot operate.
+            return;
+        }
+
+        // Apply heating efficiency.
+        float heatProduced = heatProduction * efficiency;
+
+        // Convert the produced heat into an integer
+        // because this system intentionally uses whole
+        // Fahrenheit values.
+        currentTemperature += (int)heatProduced;
+
+        // Keep the temperature within the defined
+        // scientifically grounded Mars temperature range.
+        currentTemperature = Mathf.Clamp(
+            currentTemperature,
+            minTemperature,
+            maxTemperature
+        );
+
+        UpdateText();
+    }
+
+
+    private void UpdateText()
+    {
+        temperatureMeterText.text = currentTemperature.ToString() + " °F";
+    }
+
+
+    public int GetCurrentTemperature()
+    {
+        return currentTemperature;
+    }
+}

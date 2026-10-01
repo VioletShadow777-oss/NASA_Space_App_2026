@@ -19,6 +19,9 @@ public class PowerSystem : MonoBehaviour
     [Tooltip("Power produced by ONE solar panel every 5 seconds.")]
     [SerializeField] private float powerPerSolarPanel = 5f;
 
+    [Tooltip("Cost to build a single solar panel")]
+    [SerializeField] private float solarPanelCost;
+
     [Tooltip("Efficiency of the solar panels. 1 = 100%, 0.8 = 80%.")]
     [Range(0f, 1f)]
     [SerializeField] private float solarEfficiency = 0.8f;
@@ -28,8 +31,19 @@ public class PowerSystem : MonoBehaviour
     [SerializeField] private float updateInterval = 5f;
 
     private float timer;
+    private bool canBuild; // Bool to check if can build solar panel or not
 
+    private ScrapMaterialSystem scrapMaterialSystem;
 
+    private void Awake()
+    {
+        scrapMaterialSystem = GetComponent<ScrapMaterialSystem>();
+    }
+
+    private void Start()
+    {
+        UpdateText();
+    }
     private void Update()
     {
         timer += Time.deltaTime;
@@ -39,7 +53,6 @@ public class PowerSystem : MonoBehaviour
             timer -= updateInterval;
 
             GeneratePower();
-            UpdateText();
         }
     }
 
@@ -61,9 +74,12 @@ public class PowerSystem : MonoBehaviour
             powerPerSolarPanel *
             solarEfficiency;
 
-        currentPower += powerProduced;
+        currentPower += (int)powerProduced;
 
         currentPower = Mathf.Clamp(currentPower, 0f, maxPower);
+
+        UpdateText();
+
     }
 
     private void UpdateText()
@@ -76,6 +92,14 @@ public class PowerSystem : MonoBehaviour
     /// </summary>
     public void BuildSolarPanel()
     {
+        canBuild = scrapMaterialSystem.ConsumeMaterial(solarPanelCost);
+
+        if (!canBuild)
+        {
+            // can not build solar panel if there is not enough scrap materials
+            return;
+        }
+
         solarPanelCount++;
     }
 
@@ -92,6 +116,8 @@ public class PowerSystem : MonoBehaviour
         }
 
         currentPower -= amount;
+
+        UpdateText();
 
         return true;
     }

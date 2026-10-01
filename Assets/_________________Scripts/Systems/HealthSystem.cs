@@ -45,6 +45,13 @@ public class HealthSystem : MonoBehaviour
         oxygenSystem = GetComponent<OxygenSystem>();
         waterSystem = GetComponent<WaterSystem>();
         foodSystem = GetComponent<FoodSystem>();
+
+    }
+
+    private void Start()
+    {
+        UpdateText();
+        
     }
 
 
@@ -57,7 +64,6 @@ public class HealthSystem : MonoBehaviour
             timer -= updateInterval;
 
             UpdateHealth();
-            UpdateText();
         }
     }
 
@@ -87,6 +93,9 @@ public class HealthSystem : MonoBehaviour
         }
 
         currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
+
+        UpdateText();
+
     }
 
     private void UpdateText()

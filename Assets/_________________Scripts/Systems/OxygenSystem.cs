@@ -40,6 +40,13 @@ public class OxygenSystem : MonoBehaviour
     {
         powerSystem = GetComponent<PowerSystem>();
         waterSystem = GetComponent<WaterSystem>();
+
+    }
+
+    private void Start()
+    {
+        UpdateText();
+        
     }
 
 
@@ -52,7 +59,7 @@ public class OxygenSystem : MonoBehaviour
             timer -= updateInterval;
 
             GenerateOxygen();
-            UpdateText();
+            
         }
     }
 
@@ -85,9 +92,11 @@ public class OxygenSystem : MonoBehaviour
 
         float oxygenProduced = oxygenProduction * efficiency;
 
-        currentOxygen += oxygenProduced;
+        currentOxygen += (int)oxygenProduced;
 
         currentOxygen = Mathf.Clamp(currentOxygen, 0f, maxOxygen);
+
+        UpdateText();
     }
 
     private void UpdateText()
@@ -109,6 +118,7 @@ public class OxygenSystem : MonoBehaviour
 
         currentOxygen -= amount;
 
+        UpdateText();
         return true;
     }
 
