@@ -29,6 +29,8 @@ public class WaterSystem : MonoBehaviour
 
     private float timer;
 
+    [SerializeField] private bool isSystemOn;
+
     private PowerSystem powerSystem;
 
 
@@ -40,6 +42,8 @@ public class WaterSystem : MonoBehaviour
     private void Start()
     {
         UpdateText();
+
+        isSystemOn = true;
     }
 
 
@@ -58,6 +62,11 @@ public class WaterSystem : MonoBehaviour
 
     private void RecycleWater()
     {
+
+        if (!isSystemOn)
+        {
+            return;
+        }
         // First check whether the base has enough power.
         bool hasPower = powerSystem.ConsumePower(powerCost);
 
@@ -75,6 +84,8 @@ public class WaterSystem : MonoBehaviour
         currentWater = Mathf.Clamp(currentWater, 0f, maxWater);
 
         UpdateText();
+
+        Debug.Log("Water");
     }
 
     private void UpdateText()
@@ -104,4 +115,18 @@ public class WaterSystem : MonoBehaviour
     {
         return currentWater;
     }
+    public void WaterSystemToggle()
+    {
+        if (isSystemOn == true)
+        {
+            isSystemOn = false;
+        }
+        else
+        {
+            isSystemOn = true;
+        }
+    }
+
+
+
 }

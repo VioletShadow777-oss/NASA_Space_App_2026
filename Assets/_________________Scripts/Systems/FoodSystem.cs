@@ -30,6 +30,8 @@ public class FoodSystem : MonoBehaviour
 
     private float timer;
 
+    [SerializeField] private bool isSystemOn;
+
     private PowerSystem powerSystem;
 
 
@@ -41,6 +43,7 @@ public class FoodSystem : MonoBehaviour
     private void Start()
     {
         UpdateText();
+        isSystemOn = true;
         
     }
 
@@ -59,6 +62,10 @@ public class FoodSystem : MonoBehaviour
 
     private void ProduceFood()
     {
+        if (!isSystemOn)
+        {
+            return;
+        }
         bool hasPower = powerSystem.ConsumePower(powerCost);
 
         if (!hasPower)
@@ -74,6 +81,8 @@ public class FoodSystem : MonoBehaviour
         currentFood = Mathf.Clamp(currentFood, 0f, maxFood);
 
         UpdateText();
+
+        Debug.Log("Food");
 
     }
 
@@ -104,5 +113,17 @@ public class FoodSystem : MonoBehaviour
     public float GetCurrentFood()
     {
         return currentFood;
+    }
+
+    public void FoodSystemToggle()
+    {
+        if (isSystemOn == true)
+        {
+            isSystemOn = false;
+        }
+        else
+        {
+            isSystemOn = true;
+        }
     }
 }

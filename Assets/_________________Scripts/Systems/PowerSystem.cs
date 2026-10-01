@@ -31,6 +31,8 @@ public class PowerSystem : MonoBehaviour
     [SerializeField] private float updateInterval = 5f;
 
     private float timer;
+
+    [SerializeField] private bool isSystemOn;
     private bool canBuild; // Bool to check if can build solar panel or not
 
     private ScrapMaterialSystem scrapMaterialSystem;
@@ -43,6 +45,8 @@ public class PowerSystem : MonoBehaviour
     private void Start()
     {
         UpdateText();
+        isSystemOn = true;
+
     }
     private void Update()
     {
@@ -69,6 +73,10 @@ public class PowerSystem : MonoBehaviour
         // You can change the values above to balance
         // the actual power production of your game.
 
+        if (!isSystemOn)
+        {
+            return; // Dont produce power if the system is intentionally turned off
+        }
         float powerProduced =
             solarPanelCount *
             powerPerSolarPanel *
@@ -79,6 +87,8 @@ public class PowerSystem : MonoBehaviour
         currentPower = Mathf.Clamp(currentPower, 0f, maxPower);
 
         UpdateText();
+
+        Debug.Log("Power");
 
     }
 
@@ -126,5 +136,17 @@ public class PowerSystem : MonoBehaviour
     public float GetCurrentPower()
     {
         return currentPower;
+    }
+
+    public void PowerSystemToggle()
+    {
+        if (isSystemOn == true)
+        {
+            isSystemOn = false;
+        }
+        else
+        {
+            isSystemOn = true;
+        }
     }
 }

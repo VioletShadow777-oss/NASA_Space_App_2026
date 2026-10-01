@@ -32,6 +32,8 @@ public class OxygenSystem : MonoBehaviour
 
     private float timer;
 
+    [SerializeField] private bool isSystemOn;
+
     private PowerSystem powerSystem;
     private WaterSystem waterSystem;
 
@@ -46,7 +48,8 @@ public class OxygenSystem : MonoBehaviour
     private void Start()
     {
         UpdateText();
-        
+        isSystemOn = true;
+
     }
 
 
@@ -66,6 +69,10 @@ public class OxygenSystem : MonoBehaviour
 
     private void GenerateOxygen()
     {
+        if (!isSystemOn)
+        {
+            return;
+        }
         // Oxygen requires BOTH water and power.
         //
         // If either resource is unavailable,
@@ -97,6 +104,7 @@ public class OxygenSystem : MonoBehaviour
         currentOxygen = Mathf.Clamp(currentOxygen, 0f, maxOxygen);
 
         UpdateText();
+        Debug.Log("Oxygen");
     }
 
     private void UpdateText()
@@ -126,5 +134,17 @@ public class OxygenSystem : MonoBehaviour
     public float GetCurrentOxygen()
     {
         return currentOxygen;
+    }
+
+    public void OxygenSystemToggle()
+    {
+        if (isSystemOn == true)
+        {
+            isSystemOn = false;
+        }
+        else
+        {
+            isSystemOn = true;
+        }
     }
 }
