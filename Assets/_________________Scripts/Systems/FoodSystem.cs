@@ -36,8 +36,13 @@ public class FoodSystem : MonoBehaviour
     private void Awake()
     {
         powerSystem = GetComponent<PowerSystem>();
-    }
 
+    }
+    private void Start()
+    {
+        UpdateText();
+        
+    }
 
     private void Update()
     {
@@ -48,7 +53,6 @@ public class FoodSystem : MonoBehaviour
             timer -= updateInterval;
 
             ProduceFood();
-            UpdateText();
         }
     }
 
@@ -65,9 +69,12 @@ public class FoodSystem : MonoBehaviour
 
         float foodProduced = foodProduction * efficiency;
 
-        currentFood += foodProduced;
+        currentFood += (int) foodProduced;
 
         currentFood = Mathf.Clamp(currentFood, 0f, maxFood);
+
+        UpdateText();
+
     }
 
     private void UpdateText()
@@ -87,6 +94,8 @@ public class FoodSystem : MonoBehaviour
         }
 
         currentFood -= amount;
+
+        UpdateText();
 
         return true;
     }

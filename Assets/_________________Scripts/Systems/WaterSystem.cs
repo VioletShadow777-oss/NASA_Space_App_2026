@@ -37,6 +37,11 @@ public class WaterSystem : MonoBehaviour
         powerSystem = GetComponent<PowerSystem>();
     }
 
+    private void Start()
+    {
+        UpdateText();
+    }
+
 
     private void Update()
     {
@@ -47,7 +52,6 @@ public class WaterSystem : MonoBehaviour
             timer -= updateInterval;
 
             RecycleWater();
-            UpdateText();
         }
     }
 
@@ -66,9 +70,11 @@ public class WaterSystem : MonoBehaviour
         // Apply efficiency to the amount of recovered water.
         float waterProduced = waterProduction * efficiency;
 
-        currentWater += waterProduced;
+        currentWater += (int)waterProduced;
 
         currentWater = Mathf.Clamp(currentWater, 0f, maxWater);
+
+        UpdateText();
     }
 
     private void UpdateText()
@@ -87,6 +93,8 @@ public class WaterSystem : MonoBehaviour
         }
 
         currentWater -= amount;
+
+        UpdateText();
 
         return true;
     }
