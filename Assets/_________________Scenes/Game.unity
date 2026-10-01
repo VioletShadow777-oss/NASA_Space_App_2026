@@ -2097,6 +2097,140 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1362397763}
   m_CullTransparentMesh: 1
+--- !u!1 &1426373115
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1426373121}
+  - component: {fileID: 1426373120}
+  - component: {fileID: 1426373119}
+  - component: {fileID: 1426373118}
+  - component: {fileID: 1426373117}
+  - component: {fileID: 1426373116}
+  m_Layer: 0
+  m_Name: Game Systems
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1426373116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426373115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 097a6f04509f16243a26fb2d3ae3ca34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentWater: 50
+  maxWater: 100
+  waterMeterText: {fileID: 1560121291}
+  powerCost: 2
+  waterProduction: 2
+  efficiency: 0.75
+  updateInterval: 5
+--- !u!114 &1426373117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426373115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af3ae705e002f9542971609b2f47e1cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentOxygen: 80
+  maxOxygen: 100
+  oxygenMeterText: {fileID: 1362397765}
+  waterCost: 1
+  powerCost: 2
+  oxygenProduction: 2
+  efficiency: 0.8
+  updateInterval: 5
+--- !u!114 &1426373118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426373115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d56f74033ecbb9479bc3f0a98cca2a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 100
+  maxHealth: 100
+  healthMeterText: {fileID: 54231934}
+  oxygenCost: 1
+  waterCost: 1
+  foodCost: 1
+  healthRecovery: 1
+  healthDamage: 2
+  updateInterval: 5
+--- !u!114 &1426373119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426373115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d60c3a7c947ec4396e87e04c972710, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentFood: 50
+  maxFood: 100
+  foodMeterText: {fileID: 161453823}
+  powerCost: 2
+  foodProduction: 2
+  efficiency: 0.75
+  updateInterval: 5
+--- !u!114 &1426373120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426373115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ac2e4f96ca256642b93a35ff16f0f77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentPower: 50
+  maxPower: 100
+  powerMeterText: {fileID: 273516045}
+  solarPanelCount: 2
+  powerPerSolarPanel: 5
+  solarEfficiency: 0.8
+  updateInterval: 5
+--- !u!4 &1426373121
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426373115}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1560121289
 GameObject:
   m_ObjectHideFlags: 0
@@ -2654,3 +2788,4 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 61182820}
   - {fileID: 2115912638}
+  - {fileID: 1426373121}
