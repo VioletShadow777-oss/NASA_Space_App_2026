@@ -1,5 +1,7 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class WaterSystem : MonoBehaviour
 {
@@ -29,6 +31,7 @@ public class WaterSystem : MonoBehaviour
 
     private float timer;
 
+    [SerializeField] private Image systemButtonImage;
     [SerializeField] private bool isSystemOn;
 
     private PowerSystem powerSystem;
@@ -120,10 +123,12 @@ public class WaterSystem : MonoBehaviour
         if (isSystemOn == true)
         {
             isSystemOn = false;
+            UIManager.Instance.ChangeToDisabledSprite(systemButtonImage);
         }
         else
         {
             isSystemOn = true;
+            UIManager.Instance.ChangeToActiveSprite(systemButtonImage);
         }
     }
 
