@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FoodSystem : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class FoodSystem : MonoBehaviour
     [SerializeField] private float updateInterval = 5f;
 
     private float timer;
-
+    [SerializeField] private Image systemButtonImage;
     [SerializeField] private bool isSystemOn;
 
     private PowerSystem powerSystem;
@@ -120,10 +121,12 @@ public class FoodSystem : MonoBehaviour
         if (isSystemOn == true)
         {
             isSystemOn = false;
+            UIManager.Instance.ChangeToDisabledSprite(systemButtonImage);
         }
         else
         {
             isSystemOn = true;
+            UIManager.Instance.ChangeToActiveSprite(systemButtonImage);
         }
     }
 }

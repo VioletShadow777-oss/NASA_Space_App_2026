@@ -1,5 +1,7 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class OxygenSystem : MonoBehaviour
 {
@@ -32,6 +34,7 @@ public class OxygenSystem : MonoBehaviour
 
     private float timer;
 
+    [SerializeField] private Image systemButtonImage;
     [SerializeField] private bool isSystemOn;
 
     private PowerSystem powerSystem;
@@ -142,10 +145,12 @@ public class OxygenSystem : MonoBehaviour
         if (isSystemOn == true)
         {
             isSystemOn = false;
+            UIManager.Instance.ChangeToDisabledSprite(systemButtonImage);
         }
         else
         {
             isSystemOn = true;
+            UIManager.Instance.ChangeToActiveSprite(systemButtonImage);
         }
     }
 }

@@ -1,5 +1,7 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class PowerSystem : MonoBehaviour
 {
@@ -31,6 +33,8 @@ public class PowerSystem : MonoBehaviour
     [SerializeField] private float updateInterval = 5f;
 
     private float timer;
+
+    [SerializeField] private Image systemButtonImage;
 
     [SerializeField] private bool isSystemOn;
     private bool canBuild; // Bool to check if can build solar panel or not
@@ -143,10 +147,12 @@ public class PowerSystem : MonoBehaviour
         if (isSystemOn == true)
         {
             isSystemOn = false;
+            UIManager.Instance.ChangeToDisabledSprite(systemButtonImage);
         }
         else
         {
             isSystemOn = true;
+            UIManager.Instance.ChangeToActiveSprite(systemButtonImage);
         }
     }
 }
