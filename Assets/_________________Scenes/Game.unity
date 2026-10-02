@@ -3424,7 +3424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 097a6f04509f16243a26fb2d3ae3ca34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWater: 50
+  currentWater: 100
   maxWater: 100
   waterMeterText: {fileID: 1560121291}
   powerCost: 2
@@ -3444,7 +3444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af3ae705e002f9542971609b2f47e1cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentOxygen: 80
+  currentOxygen: 100
   maxOxygen: 100
   oxygenMeterText: {fileID: 1362397765}
   waterCost: 1
@@ -3486,7 +3486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d60c3a7c947ec4396e87e04c972710, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentFood: 50
+  currentFood: 100
   maxFood: 100
   foodMeterText: {fileID: 161453823}
   powerCost: 2
@@ -3506,7 +3506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ac2e4f96ca256642b93a35ff16f0f77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentPower: 50
+  currentPower: 100
   maxPower: 100
   powerMeterText: {fileID: 273516045}
   solarPanelCount: 2
@@ -3527,8 +3527,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1589387593}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1426373122
@@ -3557,9 +3556,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec682fbeb5dcf9428aa8abecc2f52cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTemperature: -80
+  currentTemperature: 70
   minTemperature: -225
-  maxTemperature: 80
+  maxTemperature: 70
   temperatureMeterText: {fileID: 1444190349}
   powerCost: 2
   heatProduction: 5
@@ -3971,37 +3970,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1560121289}
   m_CullTransparentMesh: 1
---- !u!1 &1589387592
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1589387593}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1589387593
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1589387592}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1426373121}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1641514086
 GameObject:
   m_ObjectHideFlags: 0

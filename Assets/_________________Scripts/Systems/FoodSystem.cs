@@ -76,7 +76,7 @@ public class FoodSystem : MonoBehaviour
 
         float foodProduced = foodProduction * efficiency;
 
-        currentFood += (int) foodProduced;
+        currentFood += foodProduced;
 
         currentFood = Mathf.Clamp(currentFood, 0f, maxFood);
 
@@ -88,7 +88,7 @@ public class FoodSystem : MonoBehaviour
 
     private void UpdateText()
     {
-        foodMeterText.text = currentFood.ToString() + " %";
+        foodMeterText.text = currentFood.ToString("F1") + " %";
     }
 
     /// <summary>

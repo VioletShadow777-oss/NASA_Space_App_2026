@@ -100,7 +100,7 @@ public class HealthSystem : MonoBehaviour
 
     private void UpdateText()
     {
-        healthMeterText.text = currentHealth.ToString() + " %";
+        healthMeterText.text = currentHealth.ToString("F1") + " %";
     }
 
     public float GetCurrentHealth()
