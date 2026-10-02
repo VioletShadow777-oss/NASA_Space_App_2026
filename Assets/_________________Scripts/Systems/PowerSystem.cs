@@ -82,7 +82,7 @@ public class PowerSystem : MonoBehaviour
             powerPerSolarPanel *
             solarEfficiency;
 
-        currentPower += (int)powerProduced;
+        currentPower += powerProduced;
 
         currentPower = Mathf.Clamp(currentPower, 0f, maxPower);
 
@@ -94,7 +94,7 @@ public class PowerSystem : MonoBehaviour
 
     private void UpdateText()
     {
-        powerMeterText.text = currentPower.ToString() + " %";
+        powerMeterText.text = currentPower.ToString("F1") + " %";
     }
 
     /// <summary>

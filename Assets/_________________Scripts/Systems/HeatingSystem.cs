@@ -5,13 +5,13 @@ public class HeatingSystem : MonoBehaviour
 {
     [Header("Temperature")]
     [Tooltip("Current temperature of the Mars base in Fahrenheit.")]
-    [SerializeField] private int currentTemperature = -80;
+    [SerializeField] private float currentTemperature = -80;
 
     [Tooltip("Minimum possible temperature on Mars in Fahrenheit.")]
-    [SerializeField] private int minTemperature = -225;
+    [SerializeField] private float minTemperature = -225;
 
     [Tooltip("Maximum possible temperature on Mars in Fahrenheit.")]
-    [SerializeField] private int maxTemperature = 80;
+    [SerializeField] private float maxTemperature = 80;
 
     [Tooltip("Text to show the exact temperature.")]
     [SerializeField] private TextMeshProUGUI temperatureMeterText;
@@ -71,6 +71,7 @@ public class HeatingSystem : MonoBehaviour
     {
         if (!isSystemOn)
         {
+            LoseHeat(); // Decrease heat and return if the system is off
             return;
         }
         // The heating system requires power to operate.
@@ -78,6 +79,7 @@ public class HeatingSystem : MonoBehaviour
 
         if (!hasPower)
         {
+            LoseHeat(); // Decrease heat and return of the system has no power
             // Not enough power.
             // Heating system cannot operate.
             return;
@@ -85,11 +87,10 @@ public class HeatingSystem : MonoBehaviour
 
         // Apply heating efficiency.
         float heatProduced = heatProduction * efficiency;
-
         // Convert the produced heat into an integer
         // because this system intentionally uses whole
         // Fahrenheit values.
-        currentTemperature += (int)heatProduced;
+        currentTemperature += heatProduced;
 
         // Keep the temperature within the defined
         // scientifically grounded Mars temperature range.
@@ -104,14 +105,29 @@ public class HeatingSystem : MonoBehaviour
         Debug.Log("Heat");
     }
 
-
-    private void UpdateText()
+    private void LoseHeat()
     {
-        temperatureMeterText.text = currentTemperature.ToString() + " °F";
+        int heatDeduced = 1; // 1 Degree farenhite will lost per countdown
+
+        currentTemperature -= heatDeduced;
+
+        currentTemperature = Mathf.Clamp(
+            currentTemperature,
+            minTemperature,
+            maxTemperature
+        );
+        UpdateText();
+        Debug.Log("Heat lost");
     }
 
 
-    public int GetCurrentTemperature()
+    private void UpdateText()
+    {
+        temperatureMeterText.text = currentTemperature.ToString("F1") + " °F";
+    }
+
+
+    public float GetCurrentTemperature()
     {
         return currentTemperature;
     }

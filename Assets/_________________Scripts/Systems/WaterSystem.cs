@@ -79,7 +79,7 @@ public class WaterSystem : MonoBehaviour
         // Apply efficiency to the amount of recovered water.
         float waterProduced = waterProduction * efficiency;
 
-        currentWater += (int)waterProduced;
+        currentWater += waterProduced;
 
         currentWater = Mathf.Clamp(currentWater, 0f, maxWater);
 
@@ -90,7 +90,7 @@ public class WaterSystem : MonoBehaviour
 
     private void UpdateText()
     {
-        waterMeterText.text = currentWater.ToString() + " %";
+        waterMeterText.text = currentWater.ToString("F1") + " %";
     }
     /// <summary>
     /// Attempts to consume water.

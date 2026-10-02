@@ -99,7 +99,8 @@ public class OxygenSystem : MonoBehaviour
 
         float oxygenProduced = oxygenProduction * efficiency;
 
-        currentOxygen += (int)oxygenProduced;
+        currentOxygen += oxygenProduced;
+        
 
         currentOxygen = Mathf.Clamp(currentOxygen, 0f, maxOxygen);
 
@@ -109,7 +110,7 @@ public class OxygenSystem : MonoBehaviour
 
     private void UpdateText()
     {
-        oxygenMeterText.text = currentOxygen.ToString() + " %";
+        oxygenMeterText.text = currentOxygen.ToString("F1") + " %";
     }
 
 
