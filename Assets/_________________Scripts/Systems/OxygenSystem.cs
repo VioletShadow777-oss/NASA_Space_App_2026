@@ -50,8 +50,10 @@ public class OxygenSystem : MonoBehaviour
 
     private void Start()
     {
+        LoadSavedData();
         UpdateText();
         isSystemOn = true;
+
 
     }
 
@@ -108,6 +110,10 @@ public class OxygenSystem : MonoBehaviour
         currentOxygen = Mathf.Clamp(currentOxygen, 0f, maxOxygen);
 
         UpdateText();
+
+        SaveSystem.Instance.SetOxygen(currentOxygen);
+        SaveSystem.Instance.SaveGame();
+
         Debug.Log("Oxygen");
     }
 
@@ -131,6 +137,9 @@ public class OxygenSystem : MonoBehaviour
         currentOxygen -= amount;
 
         UpdateText();
+
+        SaveSystem.Instance.SetOxygen(currentOxygen);
+        SaveSystem.Instance.SaveGame();
         return true;
     }
 
@@ -151,6 +160,28 @@ public class OxygenSystem : MonoBehaviour
         {
             isSystemOn = true;
             UIManager.Instance.ChangeToActiveSprite(systemButtonImage);
+        }
+    }
+
+    private void LoadSavedData()
+    {
+        if(SaveSystem.Instance == null)
+        {
+            Debug.LogError("SaveSystem was not found");
+            return;
+        }
+
+        if (SaveSystem.Instance.HasSave)
+        {
+            currentOxygen = SaveSystem.Instance.GetOxygen(currentOxygen);
+
+            //isSystemOn = SaveSystem.Instance.GetOxygenSystemState(true);
+        }
+        else
+        {
+            // no save Exists
+            // keep the value configured in the inspector
+            isSystemOn = true;
         }
     }
 }

@@ -50,6 +50,7 @@ public class HeatingSystem : MonoBehaviour
 
     private void Start()
     {
+        LoadSavedData();
         UpdateText();
         isSystemOn = true;
 
@@ -104,6 +105,9 @@ public class HeatingSystem : MonoBehaviour
 
         UpdateText();
 
+        SaveSystem.Instance.SetTemperature(currentTemperature);
+        SaveSystem.Instance.SaveGame();
+
         Debug.Log("Heat");
     }
 
@@ -119,6 +123,9 @@ public class HeatingSystem : MonoBehaviour
             maxTemperature
         );
         UpdateText();
+
+        SaveSystem.Instance.SetTemperature(currentTemperature);
+        SaveSystem.Instance.SaveGame();
         Debug.Log("Heat lost");
     }
 
@@ -145,6 +152,28 @@ public class HeatingSystem : MonoBehaviour
         {
             isSystemOn = true;
             UIManager.Instance.ChangeToActiveSprite(systemButtonImage);
+        }
+    }
+
+    private void LoadSavedData()
+    {
+        if (SaveSystem.Instance == null)
+        {
+            Debug.LogError("SaveSystem was not found");
+            return;
+        }
+
+        if (SaveSystem.Instance.HasSave)
+        {
+            currentTemperature = SaveSystem.Instance.GetTemperature(currentTemperature);
+
+            //SisSystemOn = SaveSystem.Instance.GetHeatingSystemState(true);
+        }
+        else
+        {
+            // no save Exists
+            // keep the value configured in the inspector
+            isSystemOn = true;
         }
     }
 }

@@ -44,9 +44,11 @@ public class WaterSystem : MonoBehaviour
 
     private void Start()
     {
+        LoadSavedData();
         UpdateText();
-
         isSystemOn = true;
+
+
     }
 
 
@@ -88,6 +90,9 @@ public class WaterSystem : MonoBehaviour
 
         UpdateText();
 
+        SaveSystem.Instance.SetWater(currentWater);
+        SaveSystem.Instance.SaveGame();
+
         Debug.Log("Water");
     }
 
@@ -109,7 +114,8 @@ public class WaterSystem : MonoBehaviour
         currentWater -= amount;
 
         UpdateText();
-
+        SaveSystem.Instance.SetWater(currentWater);
+        SaveSystem.Instance.SaveGame();
         return true;
     }
 
@@ -132,6 +138,27 @@ public class WaterSystem : MonoBehaviour
         }
     }
 
+    private void LoadSavedData()
+    {
+        if (SaveSystem.Instance == null)
+        {
+            Debug.LogError("SaveSystem was not found");
+            return;
+        }
+
+        if (SaveSystem.Instance.HasSave)
+        {
+            currentWater = SaveSystem.Instance.GetWater(currentWater);
+
+            //isSystemOn = SaveSystem.Instance.GetWaterSystemState(true);
+        }
+        else
+        {
+            // no save Exists
+            // keep the value configured in the inspector
+            isSystemOn = true;
+        }
+    }
 
 
 }
