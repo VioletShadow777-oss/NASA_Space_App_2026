@@ -50,8 +50,8 @@ public class HealthSystem : MonoBehaviour
 
     private void Start()
     {
+        LoadSavedData();
         UpdateText();
-        
     }
 
 
@@ -95,6 +95,9 @@ public class HealthSystem : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
 
         UpdateText();
+
+        SaveSystem.Instance.SetHealth(currentHealth);
+        SaveSystem.Instance.SaveGame();
         Debug.Log("Health");
     }
 
@@ -108,5 +111,27 @@ public class HealthSystem : MonoBehaviour
         return currentHealth;
     }
 
-    
+    private void LoadSavedData()
+    {
+        if (SaveSystem.Instance == null)
+        {
+            Debug.LogError("SaveSystem was not found");
+            return;
+        }
+
+        if (SaveSystem.Instance.HasSave)
+        {
+            currentHealth = SaveSystem.Instance.GetHealth(currentHealth);
+
+            //isSystemOn = SaveSystem.Instance.GetFoodSystemState(true);
+        }
+        else
+        {
+            // no save Exists
+            // keep the value configured in the inspector
+            //isSystemOn = true;
+        }
+    }
+
+
 }

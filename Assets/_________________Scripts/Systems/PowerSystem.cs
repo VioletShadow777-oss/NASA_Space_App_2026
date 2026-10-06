@@ -48,8 +48,10 @@ public class PowerSystem : MonoBehaviour
 
     private void Start()
     {
+        LoadSavedData();
         UpdateText();
         isSystemOn = true;
+
 
     }
     private void Update()
@@ -92,6 +94,9 @@ public class PowerSystem : MonoBehaviour
 
         UpdateText();
 
+        SaveSystem.Instance.SetPower(currentPower);
+        SaveSystem.Instance.SaveGame();
+
         Debug.Log("Power");
 
     }
@@ -133,6 +138,9 @@ public class PowerSystem : MonoBehaviour
 
         UpdateText();
 
+        SaveSystem.Instance.SetPower(currentPower);
+        SaveSystem.Instance.SaveGame();
+
         return true;
     }
 
@@ -153,6 +161,28 @@ public class PowerSystem : MonoBehaviour
         {
             isSystemOn = true;
             UIManager.Instance.ChangeToActiveSprite(systemButtonImage);
+        }
+    }
+
+    private void LoadSavedData()
+    {
+        if (SaveSystem.Instance == null)
+        {
+            Debug.LogError("SaveSystem was not found");
+            return;
+        }
+
+        if (SaveSystem.Instance.HasSave)
+        {
+            currentPower = SaveSystem.Instance.GetPower(currentPower);
+
+            //isSystemOn = SaveSystem.Instance.GetPowerSystemState(true);
+        }
+        else
+        {
+            // no save Exists
+            // keep the value configured in the inspector
+            isSystemOn = true;
         }
     }
 }

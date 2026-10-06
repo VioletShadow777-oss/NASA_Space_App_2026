@@ -43,9 +43,10 @@ public class FoodSystem : MonoBehaviour
     }
     private void Start()
     {
+        LoadSavedData();
         UpdateText();
         isSystemOn = true;
-        
+
     }
 
     private void Update()
@@ -83,6 +84,9 @@ public class FoodSystem : MonoBehaviour
 
         UpdateText();
 
+        SaveSystem.Instance.SetFood(currentFood);
+        SaveSystem.Instance.SaveGame();
+
         Debug.Log("Food");
 
     }
@@ -106,7 +110,8 @@ public class FoodSystem : MonoBehaviour
         currentFood -= amount;
 
         UpdateText();
-
+        SaveSystem.Instance.SetFood(currentFood);
+        SaveSystem.Instance.SaveGame();
         return true;
     }
 
@@ -127,6 +132,28 @@ public class FoodSystem : MonoBehaviour
         {
             isSystemOn = true;
             UIManager.Instance.ChangeToActiveSprite(systemButtonImage);
+        }
+    }
+
+    private void LoadSavedData()
+    {
+        if (SaveSystem.Instance == null)
+        {
+            Debug.LogError("SaveSystem was not found");
+            return;
+        }
+
+        if (SaveSystem.Instance.HasSave)
+        {
+            currentFood = SaveSystem.Instance.GetFood(currentFood);
+
+            //isSystemOn = SaveSystem.Instance.GetFoodSystemState(true);
+        }
+        else
+        {
+            // no save Exists
+            // keep the value configured in the inspector
+            isSystemOn = true;
         }
     }
 }
