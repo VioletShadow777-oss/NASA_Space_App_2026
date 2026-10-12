@@ -25,10 +25,7 @@ public class CharacterBrain : MonoBehaviour
         float deltaTime = Time.deltaTime;
 
         // Update stats and determine sprint availability.
-        bool isSprinting = _characterStats.UpdateStamina(
-            _characterInput.SprintHeld &&
-            _characterInput.MoveInput.sqrMagnitude > 0.01f,
-            deltaTime);
+        bool isSprinting = _characterInput.SprintHeld;
 
         // Consume jump input once per press.
         bool jumpPressed =

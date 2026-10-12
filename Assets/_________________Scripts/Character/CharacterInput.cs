@@ -87,6 +87,7 @@ public class CharacterInput : MonoBehaviour
         if (context.performed)
         {
             UIManager.Instance.PlayerMenuToggle();
+            CursorManager.Instance.ToggelCursor();
         }
     }
 
