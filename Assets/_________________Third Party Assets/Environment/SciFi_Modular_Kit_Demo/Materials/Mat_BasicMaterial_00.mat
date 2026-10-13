@@ -145,7 +145,7 @@ Material:
     - _Gradient: 1
     - _Metalic: 0
     - _Metalic_Strength: 1
-    - _Metallic: 0
+    - _Metallic: 0.5
     - _OcclusionStrength: 1
     - _OpaqueCullMode: 2
     - _Parallax: 0.005

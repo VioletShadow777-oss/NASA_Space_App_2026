@@ -19,7 +19,7 @@ public class DoorInteraction : MonoBehaviour, iInteractable
 
     public bool Interact(Interactor interactor)
     {
-        
+        // what happens when Interact
         doorAnimator.SetTrigger("doorOpen_t");
         return true;
     }

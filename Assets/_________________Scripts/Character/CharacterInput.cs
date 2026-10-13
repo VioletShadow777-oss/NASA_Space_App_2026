@@ -21,56 +21,18 @@ public class CharacterInput : MonoBehaviour
     {
         _playerInput = GetComponent<PlayerInput>();
         interactor = GetComponentInChildren<Interactor>();
-        _playerActionMap =
-            _playerInput.actions.FindActionMap("Player", true);
+
+        _playerActionMap = _playerInput.actions.FindActionMap("Player", true);
     }
 
     private void OnEnable()
     {
-        if (_playerActionMap == null)
-            return;
-
-        _playerActionMap.FindAction("Move", true).performed += Move;
-        _playerActionMap.FindAction("Move", true).canceled += Move;
-
-        _playerActionMap.FindAction("Look", true).performed += Look;
-        _playerActionMap.FindAction("Look", true).canceled += Look;
-
-        _playerActionMap.FindAction("Jump", true).performed += Jump;
-        _playerActionMap.FindAction("Jump", true).canceled += Jump;
-
-        _playerActionMap.FindAction("Sprint", true).performed += Sprint;
-        _playerActionMap.FindAction("Sprint", true).canceled += Sprint;
-
-        _playerActionMap.FindAction("Tab Actions", true).performed += TabActios;
-        _playerActionMap.FindAction("Tab Actions", true).canceled += TabActios;
-
-        _playerActionMap.FindAction("Interaction", true).performed += interactor.InteractionInput;
-        _playerActionMap.FindAction("Interaction", true).canceled += interactor.InteractionInput;
+        SubscribePlayerActions();
     }
 
     private void OnDisable()
     {
-        if (_playerActionMap == null)
-            return;
-
-        _playerActionMap.FindAction("Move").performed -= Move;
-        _playerActionMap.FindAction("Move").canceled -= Move;
-
-        _playerActionMap.FindAction("Look").performed -= Look;
-        _playerActionMap.FindAction("Look").canceled -= Look;
-
-        _playerActionMap.FindAction("Jump").performed -= Jump;
-        _playerActionMap.FindAction("Jump").canceled -= Jump;
-
-        _playerActionMap.FindAction("Sprint").performed -= Sprint;
-        _playerActionMap.FindAction("Sprint").canceled -= Sprint;
-
-        _playerActionMap.FindAction("Tab Actions", true).performed -= TabActios;
-        _playerActionMap.FindAction("Tab Actions", true).canceled -= TabActios;
-
-        _playerActionMap.FindAction("Interaction", true).performed -= interactor.InteractionInput;
-        _playerActionMap.FindAction("Interaction", true).canceled -= interactor.InteractionInput;
+        UnsubscribePlayerAction();
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -103,7 +65,7 @@ public class CharacterInput : MonoBehaviour
         {
             UIManager.Instance.PlayerMenuToggle();
             CursorManager.Instance.ToggelCursor();
-            ToggelMouseControl();
+            //ToggelMouseControl();
         }
     }
 
@@ -133,5 +95,53 @@ public class CharacterInput : MonoBehaviour
             _playerActionMap.FindAction("Look", true).canceled -= Look;
             canLook = false;
         }
+    }
+
+    public void SubscribePlayerActions()
+    {
+        if (_playerActionMap == null)
+            return;
+
+        _playerActionMap.FindAction("Move", true).performed += Move;
+        _playerActionMap.FindAction("Move", true).canceled += Move;
+
+        _playerActionMap.FindAction("Look", true).performed += Look;
+        _playerActionMap.FindAction("Look", true).canceled += Look;
+
+        _playerActionMap.FindAction("Jump", true).performed += Jump;
+        _playerActionMap.FindAction("Jump", true).canceled += Jump;
+
+        _playerActionMap.FindAction("Sprint", true).performed += Sprint;
+        _playerActionMap.FindAction("Sprint", true).canceled += Sprint;
+
+        _playerActionMap.FindAction("Tab Actions", true).performed += TabActios;
+        _playerActionMap.FindAction("Tab Actions", true).canceled += TabActios;
+
+        _playerActionMap.FindAction("Interaction", true).performed += interactor.InteractionInput;
+        _playerActionMap.FindAction("Interaction", true).canceled += interactor.InteractionInput;
+    }
+
+    public void UnsubscribePlayerAction()
+    {
+        if (_playerActionMap == null)
+            return;
+
+        _playerActionMap.FindAction("Move").performed -= Move;
+        _playerActionMap.FindAction("Move").canceled -= Move;
+
+        _playerActionMap.FindAction("Look").performed -= Look;
+        _playerActionMap.FindAction("Look").canceled -= Look;
+
+        _playerActionMap.FindAction("Jump").performed -= Jump;
+        _playerActionMap.FindAction("Jump").canceled -= Jump;
+
+        _playerActionMap.FindAction("Sprint").performed -= Sprint;
+        _playerActionMap.FindAction("Sprint").canceled -= Sprint;
+
+        _playerActionMap.FindAction("Tab Actions", true).performed -= TabActios;
+        _playerActionMap.FindAction("Tab Actions", true).canceled -= TabActios;
+
+        _playerActionMap.FindAction("Interaction", true).performed -= interactor.InteractionInput;
+        _playerActionMap.FindAction("Interaction", true).canceled -= interactor.InteractionInput;
     }
 }
