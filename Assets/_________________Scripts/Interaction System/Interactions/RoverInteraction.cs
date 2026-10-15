@@ -13,8 +13,8 @@ public class RoverInteraction : MonoBehaviour, iInteractable
     public Transform playerEnteredPosition;
     public Transform playerExitPosition;
     public Transform player;
-    public CharacterController playerCharacterController;
-    public CharacterBrain characterBrain;
+    private CharacterController playerCharacterController;
+    private CharacterBrain characterBrain;
 
 
 
