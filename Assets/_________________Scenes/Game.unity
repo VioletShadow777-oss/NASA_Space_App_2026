@@ -12792,8 +12792,6 @@ MonoBehaviour:
   playerEnteredPosition: {fileID: 470102519}
   playerExitPosition: {fileID: 1559123716}
   player: {fileID: 1723754420}
-  playerCharacterController: {fileID: 0}
-  characterBrain: {fileID: 0}
 --- !u!65 &446279779
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -45155,6 +45153,7 @@ GameObject:
   - component: {fileID: 1448633070}
   - component: {fileID: 1448633069}
   - component: {fileID: 1448633068}
+  - component: {fileID: 1448633074}
   m_Layer: 0
   m_Name: FreeLook Camera
   m_TagString: Untagged
@@ -45227,15 +45226,26 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1448633067}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a076c17fe76165e4f8ed21498b877bf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Modifiers: []
+  Modifiers:
+  - rid: 8939509273603604571
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 8939509273603604571
+      type: {class: CinemachineFreeLookModifier/NoiseModifier, ns: Unity.Cinemachine, asm: Unity.Cinemachine}
+      data:
+        Noise:
+          Top:
+            Amplitude: 1
+            Frequency: 0.1
+          Bottom:
+            Amplitude: 1
+            Frequency: 0.1
 --- !u!114 &1448633070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45254,7 +45264,7 @@ MonoBehaviour:
       Enabled: 0
       Size: {x: 0.2, y: 0.2}
     HardLimits:
-      Enabled: 0
+      Enabled: 1
       Size: {x: 0.8, y: 0.8}
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
@@ -45354,7 +45364,7 @@ MonoBehaviour:
   Lens:
     FieldOfView: 60
     OrthographicSize: 5
-    NearClipPlane: 0.3
+    NearClipPlane: 0.01
     FarClipPlane: 1000
     Dutch: 0
     ModeOverride: 0
@@ -45386,6 +45396,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1448633074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448633067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NoiseProfile: {fileID: 11400000, guid: e9ce97b7a206dc64d90931ea044e0c72, type: 2}
+  PivotOffset: {x: 0, y: 0, z: 0}
+  AmplitudeGain: 1
+  FrequencyGain: 1
+  m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!4 &1450051138 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 842392671266064896, guid: eb5e81dba4c43424c8d4c3b2f6b1147d, type: 3}
@@ -56498,7 +56525,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -65416,7 +65443,7 @@ TerrainCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 2
   m_TerrainData: {fileID: 15600000, guid: 3536032425f1721448aaa5d1d50260b7, type: 2}
