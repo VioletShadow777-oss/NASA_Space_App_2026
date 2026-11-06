@@ -93,7 +93,7 @@ public class WaterSystem : MonoBehaviour
         SaveSystem.Instance.SetWater(currentWater);
         SaveSystem.Instance.SaveGame();
 
-        Debug.Log("Water");
+        //Debug.Log("Water");
     }
 
     private void UpdateText()

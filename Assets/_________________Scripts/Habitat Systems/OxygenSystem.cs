@@ -114,7 +114,7 @@ public class OxygenSystem : MonoBehaviour
         SaveSystem.Instance.SetOxygen(currentOxygen);
         SaveSystem.Instance.SaveGame();
 
-        Debug.Log("Oxygen");
+        //Debug.Log("Oxygen");
     }
 
     private void UpdateText()

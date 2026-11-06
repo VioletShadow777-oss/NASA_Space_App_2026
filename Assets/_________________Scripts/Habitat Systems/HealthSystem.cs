@@ -98,7 +98,7 @@ public class HealthSystem : MonoBehaviour
 
         SaveSystem.Instance.SetHealth(currentHealth);
         SaveSystem.Instance.SaveGame();
-        Debug.Log("Health");
+        //Debug.Log("Health");
     }
 
     private void UpdateText()
