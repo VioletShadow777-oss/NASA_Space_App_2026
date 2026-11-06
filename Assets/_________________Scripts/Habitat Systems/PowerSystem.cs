@@ -97,7 +97,7 @@ public class PowerSystem : MonoBehaviour
         SaveSystem.Instance.SetPower(currentPower);
         SaveSystem.Instance.SaveGame();
 
-        Debug.Log("Power");
+        //Debug.Log("Power");
 
     }
 

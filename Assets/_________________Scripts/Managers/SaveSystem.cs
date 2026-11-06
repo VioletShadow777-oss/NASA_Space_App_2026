@@ -95,7 +95,7 @@ public class SaveSystem : MonoBehaviour
             File.WriteAllText(saveFilePath, json);
 
             HasSave = true;
-            Debug.Log("Game saved successfully.");
+            //Debug.Log("Game saved successfully.");
 
         }
         catch(System.Exception exception)

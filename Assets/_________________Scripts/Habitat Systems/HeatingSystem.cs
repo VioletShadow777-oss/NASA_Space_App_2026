@@ -108,7 +108,7 @@ public class HeatingSystem : MonoBehaviour
         SaveSystem.Instance.SetTemperature(currentTemperature);
         SaveSystem.Instance.SaveGame();
 
-        Debug.Log("Heat");
+        //Debug.Log("Heat");
     }
 
     private void LoseHeat()

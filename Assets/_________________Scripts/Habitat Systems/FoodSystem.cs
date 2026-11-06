@@ -87,7 +87,7 @@ public class FoodSystem : MonoBehaviour
         SaveSystem.Instance.SetFood(currentFood);
         SaveSystem.Instance.SaveGame();
 
-        Debug.Log("Food");
+        //Debug.Log("Food");
 
     }
 
