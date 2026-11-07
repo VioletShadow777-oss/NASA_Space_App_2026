@@ -23,7 +23,7 @@ public class FoodSystem : MonoBehaviour
 
     [Tooltip("Efficiency of the greenhouse. 1 = 100%.")]
     [Range(0f, 1f)]
-    [SerializeField] private float efficiency = 0.75f;
+    [SerializeField] public float efficiency = 0.75f;
 
     [Header("Time")]
     [Tooltip("How often the food system updates, in seconds.")]
