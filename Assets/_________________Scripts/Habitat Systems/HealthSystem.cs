@@ -27,7 +27,9 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] private float healthRecovery = 1f;
 
     [Tooltip("Health lost when one or more required resources are unavailable.")]
-    [SerializeField] private float healthDamage = 2f;
+    [SerializeField] public float healthDamage = 2f;
+
+    public bool isInside; // To detect whether the player is inside the base or not
 
     [Header("Time")]
     [Tooltip("How often the health system updates, in seconds.")]

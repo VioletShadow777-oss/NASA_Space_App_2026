@@ -26,7 +26,7 @@ public class OxygenSystem : MonoBehaviour
 
     [Tooltip("Efficiency of oxygen generation. 1 = 100%.")]
     [Range(0f, 1f)]
-    [SerializeField] private float efficiency = 0.8f;
+    [SerializeField] public float efficiency = 0.8f;
 
     [Header("Time")]
     [Tooltip("How often the oxygen system updates, in seconds.")]

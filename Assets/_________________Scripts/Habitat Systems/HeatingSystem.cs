@@ -27,7 +27,7 @@ public class HeatingSystem : MonoBehaviour
 
     [Tooltip("Efficiency of the heating system. 1 = 100%.")]
     [Range(0f, 1f)]
-    [SerializeField] private float efficiency = 0.75f;
+    [SerializeField] public float efficiency = 0.75f;
 
 
     [Header("Time")]
@@ -126,7 +126,7 @@ public class HeatingSystem : MonoBehaviour
 
         SaveSystem.Instance.SetTemperature(currentTemperature);
         SaveSystem.Instance.SaveGame();
-        Debug.Log("Heat lost");
+        //Debug.Log("Heat lost");
     }
 
 

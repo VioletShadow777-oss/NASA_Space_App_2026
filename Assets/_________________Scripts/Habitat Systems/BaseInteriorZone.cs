@@ -6,6 +6,7 @@ public class BaseInteriorZone : MonoBehaviour
     public Transform player;
 
     private SuitOxygen suitOxygen;
+    [SerializeField] private HealthSystem healthSystem;
     private void Start()
     {
         if(player == null)
@@ -14,11 +15,13 @@ public class BaseInteriorZone : MonoBehaviour
         }
 
         suitOxygen = player.GetComponent<SuitOxygen>();
+        
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            healthSystem.isInside = true;
             Debug.Log("Player Entered the Base");
         }
     }
@@ -27,6 +30,7 @@ public class BaseInteriorZone : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            healthSystem.isInside = false;
             Debug.Log("Player Left the Base");
         }
     }

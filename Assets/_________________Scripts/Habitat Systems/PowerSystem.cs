@@ -26,7 +26,7 @@ public class PowerSystem : MonoBehaviour
 
     [Tooltip("Efficiency of the solar panels. 1 = 100%, 0.8 = 80%.")]
     [Range(0f, 1f)]
-    [SerializeField] private float solarEfficiency = 0.8f;
+    [SerializeField] public float solarEfficiency = 0.8f;
 
     [Header("Time")]
     [Tooltip("How often the power system updates, in seconds.")]
