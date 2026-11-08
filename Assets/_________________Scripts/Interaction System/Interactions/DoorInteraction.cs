@@ -33,4 +33,9 @@ public class DoorInteraction : MonoBehaviour, iInteractable
     {
         doorCollider.enabled = true;
     }
+
+    public void StopInteract()
+    {
+        return;
+    }
 }

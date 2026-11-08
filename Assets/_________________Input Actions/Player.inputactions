@@ -53,12 +53,12 @@
                 },
                 {
                     "name": "Interaction",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "47a819ba-9a46-4d4d-ae8f-055431de2b65",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
