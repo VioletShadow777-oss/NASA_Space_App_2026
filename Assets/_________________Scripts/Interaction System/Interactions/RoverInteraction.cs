@@ -76,4 +76,9 @@ public class RoverInteraction : MonoBehaviour, iInteractable
         characterBrain.enabled = true;
        
     }
+
+    public void StopInteract()
+    {
+        return;
+    }
 }

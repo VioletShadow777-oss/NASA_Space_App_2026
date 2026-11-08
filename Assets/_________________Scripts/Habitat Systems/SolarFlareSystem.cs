@@ -63,7 +63,7 @@ public class SolarFlareSystem : MonoBehaviour
         if(flareEffectDuration <= 0f)
         {
             isSolarFlareHappaning = false;
-            flareEffectDuration = 120f;
+            flareEffectDuration = 10f;
             RestoreValues();
         }
     }

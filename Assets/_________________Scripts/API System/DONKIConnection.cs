@@ -16,14 +16,20 @@ public class DONKIConnection : MonoBehaviour
             return $"https://ccmc.gsfc.nasa.gov/DONKI-API/get/SEP?startDate={startDate}&endDate={endDate}";
         }
     }
-    private void Awake()
-    {
-        solarFlareSystem = GetComponent<SolarFlareSystem>();
-    }
+   
 
     // remembers flares we already used, so one flare doesn't start the event many times
     HashSet<string> usedFlares = new HashSet<string>();
 
+    private void Awake()
+    {
+        solarFlareSystem = GetComponent<SolarFlareSystem>();
+    }
+    private void Start()
+    {
+        //StartCoroutine(CheckNasa());
+        
+    }
     // Call this from your own timer
     public void CheckNasaNow()
     {
@@ -33,43 +39,50 @@ public class DONKIConnection : MonoBehaviour
     // Runs once, then stops
     IEnumerator CheckNasa()
     {
-        usedFlares.Clear();
-        using (UnityWebRequest request = UnityWebRequest.Get(url))
-        {
-            yield return request.SendWebRequest();
 
-            if (request.result == UnityWebRequest.Result.Success)
+        //while (true)
+        //{
+        //    yield return new WaitForSeconds(1800);
+            usedFlares.Clear();
+            using (UnityWebRequest request = UnityWebRequest.Get(url))
             {
-                string json = request.downloadHandler.text;
+                yield return request.SendWebRequest();
 
-                SEPEventList list = JsonUtility.FromJson<SEPEventList>("{\"events\":" + json + "}");
-
-                if (list != null && list.events != null)
+                if (request.result == UnityWebRequest.Result.Success)
                 {
-                    foreach (SEPEvent sep in list.events)
+                    string json = request.downloadHandler.text;
+
+                    SEPEventList list = JsonUtility.FromJson<SEPEventList>("{\"events\":" + json + "}");
+
+                    if (list != null && list.events != null)
                     {
-                        if (sep.linkedEvents == null) continue;
-
-                        foreach (SEPLinkedEvent linked in sep.linkedEvents)
+                        foreach (SEPEvent sep in list.events)
                         {
-                            string id = linked.activityID;
+                            if (sep.linkedEvents == null) continue;
 
-                            if (id.Contains("FLR"))
+                            foreach (SEPLinkedEvent linked in sep.linkedEvents)
                             {
-                                if (usedFlares.Add(id))
+                                string id = linked.activityID;
+
+                                if (id.Contains("FLR"))
                                 {
-                                    StartFlareEvent(id);
+                                    if (usedFlares.Add(id))
+                                    {
+                                        StartFlareEvent(id);
+                                    }
                                 }
                             }
                         }
                     }
                 }
+                else
+                {
+                    Debug.LogWarning("NASA request failed: " + request.error);
+                }
             }
-            else
-            {
-                Debug.LogWarning("NASA request failed: " + request.error);
-            }
-        }
+
+        //}
+        
     }
 
     void StartFlareEvent(string id)
