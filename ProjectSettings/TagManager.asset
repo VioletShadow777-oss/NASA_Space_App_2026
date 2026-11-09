@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CinemachineTarget
   - Base Area
+  - Object Place Holder
   layers:
   - Default
   - TransparentFX

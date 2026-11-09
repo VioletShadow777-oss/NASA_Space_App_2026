@@ -7,6 +7,7 @@ public class ObjectInteraction : MonoBehaviour, iInteractable
 
     private void Start()
     {
+        objectPlaceHolder = GameObject.FindGameObjectWithTag("Object Place Holder").GetComponent<Transform>(); 
         rb = GetComponent<Rigidbody>();
     }
     public bool CarInteract()
