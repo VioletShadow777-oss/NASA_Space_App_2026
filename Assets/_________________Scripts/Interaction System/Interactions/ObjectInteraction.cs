@@ -1,5 +1,7 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(BoxCollider))]
 public class ObjectInteraction : MonoBehaviour, iInteractable
 {
     [SerializeField] private Transform objectPlaceHolder;

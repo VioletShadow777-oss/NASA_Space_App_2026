@@ -55,11 +55,11 @@ public class UIManager : MonoBehaviour
     #region Interaction UI
     public void ShowInteractionUI()
     {
-        interactionImage.CrossFadeAlpha(1f, 0.15f, false);
+        interactionImage?.CrossFadeAlpha(1f, 0.15f, false);
     }
     public void HideInteractionUI()
     {
-        interactionImage.CrossFadeAlpha(0f, 0.15f, false);
+        interactionImage?.CrossFadeAlpha(0f, 0.15f, false);
     }
     #endregion
 }

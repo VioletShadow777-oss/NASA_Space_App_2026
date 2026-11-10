@@ -54,10 +54,12 @@ public class RoverInteraction : MonoBehaviour, iInteractable
         playerCharacterController.enabled = false;
         player.localPosition = new Vector3(0, 0, 0);
         
+        
     }
 
     public void ExitRover()
     {
+        
         playerInput.SwitchCurrentActionMap("Player");
         characterInput.SubscribePlayerActions();
         roverInput.UnsubscribeRoveActions();
